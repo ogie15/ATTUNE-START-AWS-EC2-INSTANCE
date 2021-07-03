@@ -51,7 +51,7 @@ Get-DefaultAWSRegion
 
 
 #Region =============================== Main Work ====================================
-Set-AWSCredential -AccessKey "AKIAUHIVJOQQN3YNLCUU" -SecretKey "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" -StoreAs "OjTest"
+Set-AWSCredential -AccessKey "" -SecretKey "" -StoreAs "OjTest"
 
 # Get EC2 instance
 Get-EC2Instance -ProfileName "OjTest" | Format-List
