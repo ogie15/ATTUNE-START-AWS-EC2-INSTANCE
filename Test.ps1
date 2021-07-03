@@ -47,6 +47,9 @@ Get-Help Set-AWSCredential -Full
 
 #Get AWS default region 
 Get-DefaultAWSRegion
+
+# TCP test connection 
+Test-NetConnection -ComputerName "137.117.241.97" -Port 5986 -InformationLevel Detailed | Format-List
 #EndRegion Play===================================================================================
 
 
