@@ -41,10 +41,19 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV 
     Write-Output "AWS PowerShell Module exists ... checking ..."
 
     # Gets the build number for the AWS Module 
-    $Script:AWSModuleBuild = (($Script:GetAWSModule).Version).Build
+    $Script:AWSModuleBuild = ($Script:GetAWSModule).Version
 
     # Checks the build number to meet requirements 
-    if($Script:AWSModuleBuild -lt 13) {
+    if($Script:AWSModuleBuild -like "*4.1.14.0*") {
+
+        # Saves and converts Module version name to a variable
+        $Script:OutVersion = ((($Script:GetAWSModule).Version)).tostring()
+
+        # echo the message
+        Write-Output "AWSPowerShell Module Version $Script:OutVersion meets the minimum requirement."
+
+    # Check if the build version is on 13
+    }else{
 
         # echo the message
         Write-Output "Updating the AWS PowerShell Module..."
@@ -54,21 +63,6 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV 
 
         # echo the message
         Write-Output "AWS PowerShell Module is updated :)"
-
-    # Check builld if the version greater 13
-    }elseif ($Script:AWSModuleBuild -gt 13) {
-
-        # Saves and converts Module version name to a variable
-        $Script:OutVersion = ((($Script:GetAWSModule).Version)).tostring()
-
-        # echo the message
-        Write-Output "A higher version of AWSPowerShell Module Version ($Script:OutVersion) is installed and should meet requirement."
-    
-    # Check if the build version is on 13
-    }elseif($Script:AWSModuleBuild -eq 13) {
-
-        # echo the message
-        Write-Output "AWSPowerShell Module Version $Script:OutVersion meets the minimum requirement."
     }
 
 #EndRegion if module is installed, update module if version is not up to Version "4.1.13.0"
@@ -83,11 +77,10 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV 
     Write-Output "AWS PowerShell Module is installing..."
 
     # Install AWS Powershell Module 
-    Install-Module -Name AWSPowerShell -MaximumVersion "4.1.13.0" -Scope "CurrentUser" -AllowClobber:$true -Confirm:$false -Force
+    Install-Module -Name AWSPowerShell -MaximumVersion "4.1.14.0" -Scope "CurrentUser" -AllowClobber:$true -Confirm:$false -Force
 
     # echo the message
     Write-Output "AWS PowerShell Module is installed :)"
-
 }
 #EndRegion If module is not installed, install it
 # ===========================================================================
