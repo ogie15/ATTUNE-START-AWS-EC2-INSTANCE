@@ -87,7 +87,7 @@ if($null -eq $Script:ErrorAWSV[0]) {
     Write-Output "AWS PowerShell Module is installing..."
 
     # Install AWS Powershell Module 
-    Install-Module -Name AWSPowerShell -MaximumVersion "4.1.12.0" -Scope "CurrentUser" -AllowClobber:$true -Confirm:$false -Force
+    Install-Module -Name AWSPowerShell -MaximumVersion "4.1.13.0" -Scope "CurrentUser" -AllowClobber:$true -Confirm:$false -Force
 
     # echo the message
     Write-Output "AWS PowerShell Module is installed :)"
