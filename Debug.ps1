@@ -34,7 +34,7 @@ if ($Script:ValueProcessEP -eq 0) {
 $Script:ErrorAWSV = $null
 # ===========================================================================
 # Get-Module -All -Name AWSPowerShell
-$Script:GetAWSModule = Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue
+$Script:GetAWSModule = Get-InstalledModule -Name AWSPowerShelrl -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue
 # ===========================================================================
 #Region if module is installed, update module if version is not up to Version "4.1.13.0"
 # Check the error variable for the AWS PowerShell get installed module cmdlet is empty or not 
