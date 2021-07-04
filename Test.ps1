@@ -74,19 +74,19 @@ Test-NetConnection -ComputerName "137.117.241.97" -Port 5986 -InformationLevel D
 # ------------------------------------------------------------------------------------------------------------------
 
 
+Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Undefined
 #  Clear variable
 Get-Variable | Remove-Variable
 #EndRegion Play===================================================================================
 
 
-
 #Region =============================== Main Work ====================================
-# check if AWSPowerShell is installed check 1
-# Get-Module -All -Name AWSPowerShell
-Get-InstalledModule -Name AWSPowerShell
-
+#Region Module segment
 # Install AWSPowerShell Module 
 Install-Module -Name AWSPowerShell -Confirm:$false -Force
+
+#Unistall Test Module
+Uninstall-Module -Name AWSPowerShell -Confirm:$false -Force
 
 # Set AWS Credentials
 Set-AWSCredential -AccessKey "AKIAUHIVJOQQN3YNLCUU" -SecretKey "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" -StoreAs "DefaultSetKeys"
@@ -98,7 +98,7 @@ Get-EC2Instance -InstanceId "i-0fffdd7a07b129f58" -ProfileName "DefaultSetKeys" 
 Start-EC2Instance -InstanceId "i-0fffdd7a07b129f58" -Region "eu-west-2" -ProfileName "DefaultSetKeys"
 
 # Remove Profile
-Remove-AWSCredentialProfile -ProfileName "DefaultSetKeys" -Force
+Remove-AWSCredentialProfile -ProfileName "OjTest" -Force
+#EndRegion Module segment
+
 #EndRegion =============================== Main Work ====================================
-# Next try to create a file that will be created and deleted after it runs   
-# https://subscription.packtpub.com/book/networking_and_servers/9781785884078/6/ch06lvl1sec71/stopping-the-ec2-instance#:~:text=For%20stopping%20an%20EC2%20instance,passing%20the%20instance%20reservation%20ID.
