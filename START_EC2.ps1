@@ -1,5 +1,5 @@
-
-#Region for ExecutionPolicy 
+#Region for ExecutionPolicy
+# ===========================================================================
 # Get Execution Policy of the current process
 $Script:ProcessEP = Get-ExecutionPolicy -Scope Process
 
@@ -11,7 +11,7 @@ if ($Script:ValueProcessEP -eq 0) {
 
     # echo the message
     Write-Output "Execution Policy is already set to Unrestricted for the Process"
-
+# Check if Execution Policy of the process is already set
 }else{
 
     # Set the ExecutionPolicy of the Process to Unrestricted
@@ -24,22 +24,18 @@ if ($Script:ValueProcessEP -eq 0) {
         Write-Output "Execution Policy is now set to Unrestricted for the Process"
     }
 }
+# ===========================================================================
 #EndRegion for ExecutionPolicy 
-
 
 
 #Region Check if AWSPowerShell Module is installed 
 # ===========================================================================
-# Set Error Variable
-$Script:ErrorAWSV = $null
-# ===========================================================================
-# Get-Module -All -Name AWSPowerShell
-$Script:GetAWSModule = Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue
-# ===========================================================================
 #Region if module is installed, update module if version is not up to Version "4.1.13.0"
-# Check the error variable for the AWS PowerShell get installed module cmdlet is empty or not 
-if($null -eq $Script:ErrorAWSV[0]) {
-    
+if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue)) {
+
+    # Get the AWS module installed and save it in a variable
+    $Script:GetAWSModule = Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue
+
     # No errors the AWS Powershell Module is installled but might need to be updated
     # echo the message
     Write-Output "AWS PowerShell Module exists ... checking ..."
@@ -78,7 +74,7 @@ if($null -eq $Script:ErrorAWSV[0]) {
 #EndRegion if module is installed, update module if version is not up to Version "4.1.13.0"
 # ===========================================================================
 #Region If module is not installed, install it 
-}elseif($null -ne $Script:ErrorAWSV[0]) {
+}else{
 
     # echo the message
     Write-Output "AWS PowerShell Module is not installed"
@@ -93,6 +89,6 @@ if($null -eq $Script:ErrorAWSV[0]) {
     Write-Output "AWS PowerShell Module is installed :)"
 
 }
-#EndRegion If module is not installed, install it 
-
+#EndRegion If module is not installed, install it
+# ===========================================================================
 #EndRegion Check if AWSPowerShell Module is installed 
