@@ -1,4 +1,3 @@
-
 #Region for ExecutionPolicy 
 # Get Execution Policy of the current process
 $Script:ProcessEP = Get-ExecutionPolicy -Scope Process
@@ -38,7 +37,7 @@ $Script:GetAWSModule = Get-InstalledModule -Name AWSPowerShelrl -ErrorVariable +
 # ===========================================================================
 #Region if module is installed, update module if version is not up to Version "4.1.13.0"
 # Check the error variable for the AWS PowerShell get installed module cmdlet is empty or not 
-if($null -eq $Script:ErrorAWSV[0]) {
+if($null -ne $Script:ErrorAWSV[0]) {
     
     # No errors the AWS Powershell Module is installled but might need to be updated
     # echo the message
@@ -78,7 +77,7 @@ if($null -eq $Script:ErrorAWSV[0]) {
 #EndRegion if module is installed, update module if version is not up to Version "4.1.13.0"
 # ===========================================================================
 #Region If module is not installed, install it 
-}elseif($null -ne $Script:ErrorAWSV[0]) {
+}elseif($null -eq $Script:ErrorAWSV[0]) {
 
     # echo the message
     Write-Output "AWS PowerShell Module is not installed"
