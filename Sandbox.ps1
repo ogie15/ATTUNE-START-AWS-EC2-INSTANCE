@@ -107,21 +107,43 @@ $Script:ProfileNameVaule = "DefaultSetKeys"
 # $Script:RegionVaule = "eu-west-2"
 
 
-# $hash=[ordered]@{ID=1; Subject='Maths';Marks=80}
-# Hash Table of InstanceId with coressponding region pair
-[pscustomobject]$AHashtable = @{ 
+# ===================================================================
+$Script:ht = @{ 
     "i-0886cdf673b05587d" = "eu-west-2";
     "i-0fffdd7a07b129f58" = "eu-west-2";
     "i-01109b6fb6b9d30dc" = "eu-west-2"
 }
 
-$Script:HashValue = [pscustomobject]$AHashtable
+$ht.GetEnumerator()  | ForEach-Object { 
+    Write-Output "$($_.Name)" 
+    Write-Output echo "oh" 
+    Write-Output "$($_.Value)" 
+}
 
-Write-Output $Script:HashValue | get-member
+# $hash=[ordered]@{ID=1; Subject='Maths';Marks=80}
+# Hash Table of InstanceId with coressponding region pair
+$Script:HashValue = @{ 
+    "i-0886cdf673b05587d" = "eu-west-2";
+    "i-0fffdd7a07b129f58" = "eu-west-2";
+    "i-01109b6fb6b9d30dc" = "eu-west-2"
+}
 
-foreach ($item in $Script:HashValue) {
-    Write-Output $item.Keys[0] $item.Values[0] $item.Values[0]
 
+
+foreach ($item in $Script:HashValue.GetEnumerator()) {
+    # $ModItemKeys = $item.Keys[0] | Out-String
+
+    # $ModItemValues = $item.Values[0] | Out-String
+
+    # Write-Output "$ModItemKeys + $ModItemValues"
+
+    Write-Output "$($item.Name)" 
+
+    Write-Output "mm"
+
+
+}
+# ===================================================================
     # # Set AWS Credentials
     # Set-AWSCredential -AccessKey $AccessKeyValue -SecretKey $SecretKeyValue -StoreAs $ProfileNameVaule
 
@@ -130,7 +152,7 @@ foreach ($item in $Script:HashValue) {
 
     # Remove Profile
     # Remove-AWSCredentialProfile -ProfileName $ProfileNameVaule -Force
-}
+# }
 
 
 # Set AWS Credentials
