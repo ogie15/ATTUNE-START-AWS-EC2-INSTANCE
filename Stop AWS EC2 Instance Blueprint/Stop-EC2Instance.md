@@ -1,0 +1,1 @@
+This is a Blueprint for stoping single or multiple AWS EC2 INSTANCES

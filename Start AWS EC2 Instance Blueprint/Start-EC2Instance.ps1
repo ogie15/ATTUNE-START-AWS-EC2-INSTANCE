@@ -64,7 +64,6 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV 
         # echo the message
         Write-Output "AWS PowerShell Module is updated :)"
     }
-
 #EndRegion if module is installed, update module if version is not up to Version "4.1.13.0"
 # ===========================================================================
 #Region If module is not installed, install it 
@@ -95,20 +94,16 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV 
 Import-Module -Name AWSPowerShell
 
 # Save accesskey to this Variable
-$Script:AccessKeyValue = "AKIAUHIVJOQQN3YNLCUU"
+$Script:AccessKeyValue = "{accesskey.value}"
 
 # Save secretkey to this variable
-$Script:SecretKeyValue = "NFZj7oBcNMTe+R+TTIWdQqXLYcttQ8IOwh1O9zB2"
+$Script:SecretKeyValue = "{secretkey.value}"
 
 # Set value to store profile 
 $Script:ProfileNameVaule = "DefaultSetKeys"
 
 # Hash Table of InstanceId with coressponding region pair
-$Script:HashValue = @{ 
-    "i-0886cdf673b05587d" = "eu-west-2";
-    "i-0fffdd7a07b129f58" = "eu-west-2";
-    "i-01109b6fb6b9d30dc" = "eu-west-2"
-}
+$Script:HashValue = {hashvalue.value}
 
 # Set AWS Credentials
 Set-AWSCredential -AccessKey $Script:AccessKeyValue -SecretKey $Script:SecretKeyValue -StoreAs $Script:ProfileNameVaule
@@ -119,15 +114,14 @@ foreach ($item in $Script:HashValue.GetEnumerator()) {
     # echo the message
     Write-Output "EC2 instace with InstanceId $($item.Name) in $($item.Value) region is starting..." 
 
-    # Get EC2 instance
-    Get-EC2Instance -InstanceId $($item.Name) -ProfileName $Script:ProfileNameVaule -Region $($item.Value)
-
-    #Start the instance
-    # Start-EC2Instance -InstanceId $($item.Name) -Region $($item.Value) -ProfileName $Script:ProfileNameVaule
+    # Start the instance
+    Start-EC2Instance -InstanceId $($item.Name) -Region $($item.Value) -ProfileName $Script:ProfileNameVaule
 
 }
+
 # Remove Profile
 Remove-AWSCredentialProfile -ProfileName $Script:ProfileNameVaule -Force
+
 #EndRegion Start EC2 Instance
 # ===========================================================================
-#EndRegion =============================== Main Work ====================================
+#EndRegion =============================== START EC2 SCRIPT ====================================

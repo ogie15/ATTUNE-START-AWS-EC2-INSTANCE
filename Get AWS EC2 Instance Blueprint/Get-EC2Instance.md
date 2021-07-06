@@ -1,0 +1,1 @@
+This is a Blueprint to Get single or multiple AWS EC2 INSTANCES

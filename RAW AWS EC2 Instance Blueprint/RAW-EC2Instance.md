@@ -1,0 +1,1 @@
+This is the RAW build up script for starting, stopping and getting AWS EC2 INSTANCE
