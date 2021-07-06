@@ -7,4 +7,4 @@ This a Blueprint on ATTUNE to Start an EC2 instance
 
 <!-- git pull --set-upstream "https://github.com/ogie15/START_EC2_INSTANCE" master -->
 
-<!-- i-0886cdf673b05587d working -->
+<!-- i-0886cdf673b05587d working vm -->
