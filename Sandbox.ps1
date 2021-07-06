@@ -72,22 +72,33 @@ Test-NetConnection -ComputerName "137.117.241.97" -Port 5986 -InformationLevel D
 
 # Get-EC2Instance -InstanceId "i-0fffdd7a07b129f58" -ProfileName "DefaultSetKeys" -Region {awsregion.name}
 # ------------------------------------------------------------------------------------------------------------------
-
-
-Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Undefined
-#  Clear variable
-Get-Variable | Remove-Variable
-#EndRegion Play===================================================================================
-
-
-#Region =============================== Main Work ====================================
-#Region Module segment
 # # Install AWSPowerShell Module 
 # Install-Module -Name AWSPowerShell -Confirm:$false -Force
 
 # #Unistall Test Module
 # Uninstall-Module -Name AWSPowerShell -Confirm:$false -Force
 
+Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy Undefined
+#  Clear variable
+Get-Variable | Remove-Variable
+
+# Set AWS Credentials
+Set-AWSCredential -AccessKey $AccessKeyValue -SecretKey $SecretKeyValue -StoreAs $ProfileNameVaule
+
+# Get EC2 instance
+Get-EC2Instance -InstanceId $InstanceIdVaule -ProfileName $ProfileNameVaule -Region $RegionVaule | Format-List
+
+# Get EC2 instance
+# Get-AWSCredential -ProfileName "DefaultSetKeys" | Remove-AWSCredentialProfile
+
+# Remove Profile
+# Remove-AWSCredentialProfile -ProfileName $ProfileNameVaule -Force
+#EndRegion Play===================================================================================
+
+
+
+
+#Region =============================== Main Work ====================================
 # Import Module for AWS PowerShell
 Import-Module -Name AWSPowerShell
 
@@ -100,27 +111,6 @@ $Script:SecretKeyValue = "NFZj7oBcNMTe+R+TTIWdQqXLYcttQ8IOwh1O9zB2"
 # Set value to store profile 
 $Script:ProfileNameVaule = "DefaultSetKeys"
 
-# Set value of instance ID
-# $Script:InstanceIdVaule = "i-0fffdd7a07b129f58"
-
-# Set value of the Region for the instance location
-# $Script:RegionVaule = "eu-west-2"
-
-
-# ===================================================================
-$Script:ht = @{ 
-    "i-0886cdf673b05587d" = "eu-west-2";
-    "i-0fffdd7a07b129f58" = "eu-west-2";
-    "i-01109b6fb6b9d30dc" = "eu-west-2"
-}
-
-$ht.GetEnumerator()  | ForEach-Object { 
-    Write-Output "$($_.Name)" 
-    Write-Output echo "oh" 
-    Write-Output "$($_.Value)" 
-}
-
-# $hash=[ordered]@{ID=1; Subject='Maths';Marks=80}
 # Hash Table of InstanceId with coressponding region pair
 $Script:HashValue = @{ 
     "i-0886cdf673b05587d" = "eu-west-2";
@@ -128,47 +118,23 @@ $Script:HashValue = @{
     "i-01109b6fb6b9d30dc" = "eu-west-2"
 }
 
+# Set AWS Credentials
+Set-AWSCredential -AccessKey $Script:AccessKeyValue -SecretKey $Script:SecretKeyValue -StoreAs $Script:ProfileNameVaule
 
-
+# Loop through has table of EC2 instances and their region
 foreach ($item in $Script:HashValue.GetEnumerator()) {
-    # $ModItemKeys = $item.Keys[0] | Out-String
 
-    # $ModItemValues = $item.Values[0] | Out-String
+    # echo the message
+    Write-Output "EC2 instace with InstanceId $($item.Name) in $($item.Value) region is starting..." 
 
-    # Write-Output "$ModItemKeys + $ModItemValues"
+    # Get EC2 instance
+    Get-EC2Instance -InstanceId $($item.Name) -ProfileName $Script:ProfileNameVaule -Region $($item.Value)
 
-    Write-Output "$($item.Name)" 
-
-    Write-Output "mm"
-
+    #Start the instance
+    # Start-EC2Instance -InstanceId $($item.Name) -Region $($item.Value) -ProfileName $Script:ProfileNameVaule
 
 }
-# ===================================================================
-    # # Set AWS Credentials
-    # Set-AWSCredential -AccessKey $AccessKeyValue -SecretKey $SecretKeyValue -StoreAs $ProfileNameVaule
-
-    # # Get EC2 instance
-    # Get-EC2Instance -InstanceId ($item.Keys[0]) -ProfileName $ProfileNameVaule -Region ($item.Values[0]).toString()
-
-    # Remove Profile
-    # Remove-AWSCredentialProfile -ProfileName $ProfileNameVaule -Force
-# }
-
-
-# Set AWS Credentials
-Set-AWSCredential -AccessKey $AccessKeyValue -SecretKey $SecretKeyValue -StoreAs $ProfileNameVaule
-
-# Get EC2 instance
-Get-EC2Instance -InstanceId $InstanceIdVaule -ProfileName $ProfileNameVaule -Region $RegionVaule | Format-List
-
-#Start the instance
-# Start-EC2Instance -InstanceId $InstanceIdVaule -Region $RegionVaule -ProfileName $ProfileNameVaule
-
-# Get EC2 instance
-# Get-AWSCredential -ProfileName "DefaultSetKeys" | Remove-AWSCredentialProfile
-
 # Remove Profile
-Remove-AWSCredentialProfile -ProfileName $ProfileNameVaule -Force
-#EndRegion Module segment
-
+Remove-AWSCredentialProfile -ProfileName $Script:ProfileNameVaule -Force
 #EndRegion =============================== Main Work ====================================
+
