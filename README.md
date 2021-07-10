@@ -1,5 +1,5 @@
 # AWS EC2 INSTANCE BLUEPRINT
-This a Blueprint on ATTUNE to Start, Stop and Get single or multiple EC2 instances
+*This a Blueprint on ATTUNE to Start, Stop and Get single or multiple EC2 instances*
 
 <!-- git push --set-upstream StartEC2 master -->
 
