@@ -28,10 +28,11 @@
 > > > | {secretkey.value} | (value) Inputs->Text Vaules->Variable | (secretkey) Inputs->Text Parameter->Name | String | MJYj7oBcNMTe+R+TTIWdQqXLYcttQ8IOwh1O9zH5 | 
 > > > | {hashvalue.value} | (value) Inputs->Text Vaules->Variable | (hashvalue) Inputs->Text Parameter->Name | Hash Table | @{"i-0ffhdd7a07b129f59"="eu-west-2";"i-01109b6fb6b9d30fe"="eu-west-1"} |
 > > > > ---
-> > > > ##### *Hash Table Value Syntax*
-> > > > ```
+> > > > The Hash Table holds the InstanceID with it's corresponding Region.
+> > > > ##### *Hash Table Value Syntax:*
+> > > > ```powershell
 > > > > @{"instanceid1"="region1";"instanceid2"="region2"}
-> > > >
+> > > > 
 > > > > @{"i-0ffhdd7a07b129f59"="eu-west-2";"i-01109b6fb6b9d30fe"="eu-west-1"}
 > > > > ```
 > > > > ---
