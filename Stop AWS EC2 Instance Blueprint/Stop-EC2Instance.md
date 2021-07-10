@@ -30,7 +30,7 @@
 > > > > ---
 > > > > The Hash Table holds the InstanceID with it's corresponding Region.
 > > > > ##### *Hash Table Value Syntax:*
-> > > > ---
+> > > > 
 > > > > ```powershell
 > > > > @{"instanceid1"="region1";"instanceid2"="region2"}
 > > > > ```

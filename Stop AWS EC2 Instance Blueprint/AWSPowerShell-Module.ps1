@@ -29,13 +29,13 @@ if ($Script:ValueProcessEP -eq 0) {
 
 
 
-#Region Check if AWSPowerShell Module is installed 
+#Region to Check if AWSPowerShell Module is installed 
 # ===========================================================================
 #Region if module is installed, update module if version is not up to Version "4.1.13.0"
-if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue)) {
+if($null -ne (Get-InstalledModule -Name AWSPowerShell -MinimumVersion "4.1.13.0" -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue)) {
 
     # Get the AWS module installed and save it in a variable
-    $Script:GetAWSModule = Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue
+    $Script:GetAWSModule = Get-InstalledModule -Name AWSPowerShell -MinimumVersion "4.1.13.0" -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue
 
     # echo the message
     Write-Output "AWS PowerShell Module exists ... checking ..."
@@ -44,7 +44,7 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV 
     $Script:AWSModuleBuild = ($Script:GetAWSModule).Version
 
     # Checks the build number to meet requirements 
-    if($Script:AWSModuleBuild -like "*4.1.14.0*") {
+    if($Script:AWSModuleBuild -like "*4.1.13.0*") {
 
         # Saves and converts Module version name to a variable
         $Script:OutVersion = ((($Script:GetAWSModule).Version)).tostring()
@@ -54,13 +54,7 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV 
 
     # Check if the build version is on 13
     }else{
-
-        # echo the message
-        Write-Output "Updating the AWS PowerShell Module..."
-
-        # Uppdates the AWSPoerShell Module to the latest version
-        Update-Module -Name AWSPowerShell -Confirm:$false -Force 
-
+        
         # echo the message
         Write-Output "AWS PowerShell Module is updated :)"
     }
@@ -76,7 +70,7 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -ErrorVariable +ErrorAWSV 
     Write-Output "AWS PowerShell Module is installing..."
 
     # Install AWS Powershell Module 
-    Install-Module -Name AWSPowerShell -MaximumVersion "4.1.14.0" -Scope "CurrentUser" -AllowClobber:$true -Confirm:$false -Force
+    Install-Module -Name AWSPowerShell -MaximumVersion "4.1.13.0" -Scope "CurrentUser" -AllowClobber:$true -Confirm:$false -Force
 
     # echo the message
     Write-Output "AWS PowerShell Module is installed :)"
