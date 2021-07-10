@@ -39,7 +39,7 @@
 > > > > ```
 > > > > ---
 > > > ---
-> - *Next the IAM AWS credentials are set using the `Set-AWSCredential` CMDLET*
+> - *Next the IAM AWS User credentials are set using the `Set-AWSCredential` CMDLET*
 > - *__NOTE__: Ensure to edit the values of the parameters `AccessKey` and `SecretKey` in Attune to match the IAM user credential with privileges to perform this operation*
 > - *Next will be to loop through the values of the InstanceID and their corresponding Region and then Starts the EC2 instance using the `Start-EC2Instance` CMDLET*
 > - *__NOTE__: The `InstanceId` and `Region` parameters are gotten from the Hash Table created in Attune*
