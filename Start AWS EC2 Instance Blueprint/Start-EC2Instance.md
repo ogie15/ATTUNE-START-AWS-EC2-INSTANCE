@@ -1,4 +1,5 @@
-### **Start-EC2instance**
+## **Start-EC2instance**
+> ---
 > #### **Region for ExecutionPolicy**
 > - *The script above first gets the execution policy of the current PowerShell session.*
 > 
@@ -29,7 +30,7 @@
 > > > | {hashvalue.value} | (value) Inputs->Text Vaules->Variable | (hashvalue) Inputs->Text Parameter->Name | Hash Table | @{"i-0ffhdd7a07b129f59"="eu-west-2";"i-01109b6fb6b9d30fe"="eu-west-1"} |
 > > > > ---
 > > > > The Hash Table holds the InstanceID with it's corresponding Region.
-> > > > ##### *Hash Table Value Syntax:*
+> > > > ##### *Hash Table Value Syntax:[^oj]\* 
 > > > > ```powershell
 > > > > @{"instanceid1"="region1";"instanceid2"="region2"}
 > > > > 
@@ -37,6 +38,11 @@
 > > > > ```
 > > > > ---
 > > > ---
+> - *Next the IAM AWS credentials are set using the `Set-AWSCredential` CMDLET*
+> - *__NOTE__: Ensure to edit the values of the parameters `AccessKey` and `SecretKey` in Attune to match the IAM user credential with privileges to perform this operation*
+> - *Next will be to loop through the values of the InstanceID and their corresponding Region and then Starts the EC2 instance using the `Start-EC2Instance` CMDLET*
+> - *__NOTE__: The `InstanceId` and `Region` parameters are gotten from the Hash Table created in Attune*
+> - *Finally a CMDLET `Remove-AWSCredentialProfile` is run to remove the credential profile created in the session from the local credential store*
 > ---
 ---
 [![SERVERTRIBE](https://www.servertribe.com/wp-content/themes/mars/assets/images/attune_logo.svg)](https://www.servertribe.com/)
