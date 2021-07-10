@@ -1,10 +1,5 @@
-# AWS EC2 INSTANCE BLUEPRINT
-*This a Blueprint on ATTUNE to Boot and Shutdown single or multiple EC2 instances*
-
-<!-- git push --set-upstream StartEC2 master -->
-
-<!-- git push --set-upstream "https://github.com/ogie15/AWS-EC2-INSTANCE-BLUEPRINT" master -->
-
-<!-- git pull --set-upstream "https://github.com/ogie15/AWS-EC2-INSTANCE-BLUEPRINT" master -->
-
-<!-- i-0886cdf673b05587d working vm -->
+# **Start AWS EC2 Instance Blueprint**
+***This is a Blueprint for booting single or multiple AWS EC2 INSTANCES.***
+---
+[![SERVERTRIBE](https://www.servertribe.com/wp-content/themes/mars/assets/images/attune_logo.svg)](https://www.servertribe.com/)
+***&copy;2021 Powered by ServerTribe***
