@@ -65,4 +65,3 @@ Remove-AWSCredentialProfile -ProfileName $Script:ProfileNameVaule -Force
 
 #EndRegion Start EC2 Instance
 # ===========================================================================
-#EndRegion =============================== START EC2 SCRIPT ====================================
