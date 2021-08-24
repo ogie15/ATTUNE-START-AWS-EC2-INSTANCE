@@ -26,7 +26,7 @@
 > >
 > ---
 > >
-> > ## *Below is a table explaining how to create the variables on Attune with matching data types:*
+> > ## *Below is a table explaining how to create the variables on Attune with matching data types*
 > >
 > ---
 > > | Vaule in script | Value Location in Attune | Parameter location in Attune| Data Type | Example |
