@@ -9,7 +9,7 @@ $Script:ValueProcessEP = ($Script:ProcessEP).value__
 # Check if the Execution Policy of the process is set to Unrestricted
 if ($Script:ValueProcessEP -eq 0) {
 
-    # echo the message
+    # Write the message
     Write-Output "Execution Policy is already set to Unrestricted for the Process"
 # Check if the Execution Policy of the process is already set
 }else{
@@ -20,7 +20,7 @@ if ($Script:ValueProcessEP -eq 0) {
     # Checks if the Execution Policy has been set
     if ((Get-ExecutionPolicy -Scope Process).value__ -eq 0) {
 
-        # echo the message
+        # Write the message
         Write-Output "Execution Policy is now set to Unrestricted for the Process"
     }
 }
@@ -52,7 +52,7 @@ Set-AWSCredential -AccessKey $Script:AccessKeyValue -SecretKey $Script:SecretKey
 # Loop through has table of EC2 instances and their region
 foreach ($item in $Script:HashValue.GetEnumerator()) {
 
-    # echo the message
+    # Write the message
     Write-Output "EC2 instace with InstanceId $($item.Name) in $($item.Value) region is starting..." 
 
     # Start the instance

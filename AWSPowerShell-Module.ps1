@@ -9,7 +9,7 @@ $Script:ValueProcessEP = ($Script:ProcessEP).value__
 # Check if the Execution Policy of the process is set to Unrestricted
 if ($Script:ValueProcessEP -eq 0) {
 
-    # echo the message
+    # Write the message
     Write-Output "Execution Policy is already set to Unrestricted for the Process"
 # Check if the Execution Policy of the process is already set
 }else{
@@ -20,12 +20,12 @@ if ($Script:ValueProcessEP -eq 0) {
     # Checks if the Execution Policy has been set
     if ((Get-ExecutionPolicy -Scope Process).value__ -eq 0) {
 
-        # echo the message
+        # Write the message
         Write-Output "Execution Policy is now set to Unrestricted for the Process"
     }
 }
 # ===========================================================================
-#EndRegion for ExecutionPolicy 
+#EndRegion for ExecutionPolicy
 
 
 
