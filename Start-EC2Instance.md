@@ -50,10 +50,10 @@ The Hash Table holds the InstanceID with its corresponding Region.
 
 Next, the IAM AWS User Credential is set using the `Set-AWSCredential` CMDLET.
 
-**NOTE**: *Ensure to edit the value of the parameters `AccessKey` and `SecretKey` in Attune to match the IAM AWS User Credential with the privilege to perform this operation.*
+**NOTE**: _Ensure to edit the value of the parameters `AccessKey` and `SecretKey` in Attune to match the IAM AWS User Credential with the privilege to perform this operation._
 
 Next, it loops through the values of the `InstanceID` and their corresponding `Region` and starts the EC2 instance(s) using the `Start-EC2Instance` CMDLET.
 
-**NOTE**: *The `InstanceId` and `Region` parameters are gotten from the Hash Table created in Attune.*
+**NOTE**: _The `InstanceId` and `Region` parameters are gotten from the Hash Table created in Attune._
 
 Finally, a CMDLET `Remove-AWSCredentialProfile` runs to remove the credential profile created in the session from the local credential store.
