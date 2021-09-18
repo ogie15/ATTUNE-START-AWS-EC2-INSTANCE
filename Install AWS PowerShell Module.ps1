@@ -1,5 +1,4 @@
 #Region for ExecutionPolicy
-# ===========================================================================
 # Get Execution Policy of the current process
 $Script:ProcessEP = Get-ExecutionPolicy -Scope Process
 
@@ -11,7 +10,7 @@ if ($Script:ValueProcessEP -eq 0) {
 
     # Write the message
     Write-Output "Execution Policy is already set to Unrestricted for the Process"
-# Check if the Execution Policy of the process is already set
+    # Check if the Execution Policy of the process is already set
 }else{
 
     # Set the ExecutionPolicy of the Process to Unrestricted
@@ -24,15 +23,11 @@ if ($Script:ValueProcessEP -eq 0) {
         Write-Output "Execution Policy is now set to Unrestricted for the Process"
     }
 }
-# ===========================================================================
-#EndRegion for ExecutionPolicy
-
+#EndRegion for ExecutionPolicy 
 
 
 #Region to Check if AWSPowerShell Module is installed 
-# ===========================================================================
-#Region if module is installed, update module if version is not up to Version "4.1.13.0"
-if($null -ne (Get-InstalledModule -Name AWSPowerShell -MinimumVersion "4.1.13.0" -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue)) {
+if ($null -ne (Get-InstalledModule -Name AWSPowerShell -MinimumVersion "4.1.13.0" -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue)) {
 
     # Get the AWS module installed and save it in a variable
     $Script:GetAWSModule = Get-InstalledModule -Name AWSPowerShell -MinimumVersion "4.1.13.0" -ErrorVariable +ErrorAWSV -ErrorAction SilentlyContinue
@@ -44,7 +39,7 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -MinimumVersion "4.1.13.0"
     $Script:AWSModuleBuild = ($Script:GetAWSModule).Version
 
     # Checks the build number to meet requirements 
-    if($Script:AWSModuleBuild -like "*4.1.13.0*") {
+    if ($Script:AWSModuleBuild -like "*4.1.13.0*") {
 
         # Saves and converts Module version name to a variable
         $Script:OutVersion = ((($Script:GetAWSModule).Version)).tostring()
@@ -52,17 +47,13 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -MinimumVersion "4.1.13.0"
         # echo the message
         Write-Output "AWSPowerShell Module Version $Script:OutVersion meets the minimum requirement."
 
-    # Check if the build version is on 13
+        # Check if the build version is on 13
     }else{
         
         # echo the message
         Write-Output "AWS PowerShell Module is updated :)"
     }
-#EndRegion if the module is installed, update module if the version is not up to Version "4.1.13.0"
-# ===========================================================================
-#Region If the module is not installed, install it 
 }else{
-
     # echo the message
     Write-Output "AWS PowerShell Module is not installed"
     
@@ -75,6 +66,4 @@ if($null -ne (Get-InstalledModule -Name AWSPowerShell -MinimumVersion "4.1.13.0"
     # echo the message
     Write-Output "AWS PowerShell Module is installed :)"
 }
-#EndRegion If the module is not installed, install it
-# ===========================================================================
-#EndRegion Check if AWSPowerShell Module is installed 
+#EndRegion Check if AWSPowerShell Module is installed

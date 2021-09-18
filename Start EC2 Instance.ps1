@@ -1,5 +1,4 @@
 #Region for ExecutionPolicy
-# ===========================================================================
 # Get Execution Policy of the current process
 $Script:ProcessEP = Get-ExecutionPolicy -Scope Process
 
@@ -24,13 +23,11 @@ if ($Script:ValueProcessEP -eq 0) {
         Write-Output "Execution Policy is now set to Unrestricted for the Process"
     }
 }
-# ===========================================================================
 #EndRegion for ExecutionPolicy 
 
 
 
-#Region Start EC2 Instance
-# ===========================================================================
+#Region for starting EC2 Instance
 # Import Module for AWS PowerShell
 Import-Module -Name AWSPowerShell
 
@@ -62,6 +59,4 @@ foreach ($item in $Script:HashValue.GetEnumerator()) {
 
 # Remove Profile
 Remove-AWSCredentialProfile -ProfileName $Script:ProfileNameVaule -Force
-
-#EndRegion Start EC2 Instance
-# ===========================================================================
+#EndRegion for starting EC2 Instance

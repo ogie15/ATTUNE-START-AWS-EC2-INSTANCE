@@ -1,1 +1,3 @@
-# This is a Blueprint for booting single or multiple AWS EC2 instances
+# Start AWS EC2 Instance
+
+This is a Blueprint for starting single or multiple AWS EC2 instances
