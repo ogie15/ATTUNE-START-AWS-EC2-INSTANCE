@@ -52,7 +52,7 @@ foreach ($item in $Script:HashValue.GetEnumerator()) {
     # Write the message
     Write-Output "EC2 instace with InstanceId $($item.Name) in $($item.Value) region is starting..." 
 
-    # Start the instance
+    # Start the instance / Run AWS EC2 Instances
     Start-EC2Instance -InstanceId $($item.Name) -Region $($item.Value) -ProfileName $Script:ProfileNameVaule
 
 }
