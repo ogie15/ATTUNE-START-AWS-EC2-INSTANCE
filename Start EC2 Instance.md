@@ -1,36 +1,21 @@
 # This step starts the AWS EC2 instance(s)
 
-- *The script first gets the execution policy of the current PowerShell session.*
-- *Then checks if the execution policy is set  to Unrestricted.*
-- *If it's not, it then sets the execution policy to Unrestricted for the current session.*
+The Blueprint first gets the Execution Policy of the current PowerShell session.
 
----
+Then, checks if the Execution Policy is set to Unrestricted.
 
-First, the AWSPowerShell module is imported to the current session.
+If it's not, it then sets the Execution Policy to Unrestricted for the current PowerShell session.
+
+Next, the AWSPowerShell module is imported to the current session.
 
 Then the values below are set:
 
-1. AccessKeyValue: This is the AWS IAM User access key (DataType: String)
-1. SecretKeyValue: This is the AWS IAM User secret key (DataType: String)
-1. ProfileNameVaule: This holds the user-defined AWS credentials (DataType: String)
-1. HashValue: This holds a hashtable containing the EC2 InstanceId and Region (DataType: Hashtable)
+1. AccessKeyValue: This is the AWS IAM User access key corresponding to the `AccessKey` set in the Inputs Tab.
+1. SecretKeyValue: This is the AWS IAM User secret key corresponding to the `SecretKey` set in the Inputs Tab.
+1. HashValue: This holds a hashtable containing the AWS EC2 InstanceId and Region corresponding to the `HashValue` set in the Inputs Tab.
 
----
+Next, the AWS IAM User Credential is set and saved in the local credential store.
 
-The HashValue is a Hashtable that holds the InstanceID with its corresponding Region.
+Then it loops through the values of the `InstanceID` and their corresponding `Region` and starts the EC2 instance(s).
 
-*Hash Table Value Syntax:*
-
-```powershell
-@{"instanceid1"="region1";"instanceid2"="region2"}
-```
-
-```powershell
-@{"i-0ffhdd7a07b129f59"="eu-west-2";"i-01109b6fb6b9d30fe"="eu-west-1"}
-```
-
----
-
-**NOTE**: *Ensure to edit the value of the parameters `AccessKey` and `SecretKey` in Attune to match the IAM AWS User Credential with the privilege to perform this operation.*
-
-**NOTE**: *The `InstanceId` and `Region` should be edited as well to match the EC2 Instance(s).*
+Finally, the credential profile created in the session is removed from the local credential store.
